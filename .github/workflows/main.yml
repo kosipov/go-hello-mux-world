@@ -50,7 +50,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          envs: MYSQL_HOST,MYSQL_USER,MYSQL_DBNAME
           script: |
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }} ${{ env.REGISTRY }}
             docker ps -q --filter "name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | grep -q . && docker stop ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
