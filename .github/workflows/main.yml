@@ -53,6 +53,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker login --username ${{ secrets.USER }} --password ${{ secrets.TOKEN }} ${{ env.REGISTRY }}
-            docker ps -q --filter "name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | grep -q . && docker stop ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            docker ps -q --filter "name=${{ env.IMAGE_NAME }}" | grep -q . && docker stop ${{ env.IMAGE_NAME }}
             docker image prune -a -f
-            docker run -d --rm --name ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} -p 8100:8100 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.RANDOM_TAG }}
+            docker run -d --rm --name ${{ env.IMAGE_NAME }} -p 8100:8100 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.RANDOM_TAG }}
